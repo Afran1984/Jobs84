@@ -13,6 +13,7 @@ import Jobs from './Components/Jobs/Jobs.jsx';
 import Apply from './Components/Apply/Apply.jsx';
 import Helpus from './Components/Helpus/Helpus.jsx';
 import StartApply from './Components/StartApply/StartApply.jsx';
+import JobDetiles from './Components/JobDetiles/JobDetiles.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
       {
         path: '/startapply',
         element: <StartApply></StartApply>
+      },
+      {
+        path: '/job/:id',
+        element: <JobDetiles></JobDetiles>,
+        loader: () => fetch('../jobs.json')
       }
     ]
   },

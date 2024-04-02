@@ -3,6 +3,8 @@ import ShowFeatures from '../ShowFeatures/ShowFeatures';
 
 const FeatureJob = () => {
     const [feature, setFeature] = useState([]);
+// load Show All data
+    const [dataLength, setDataLength] = useState(4);
     useEffect(()=>{
         fetch('jobs.json')
         .then(res => res.json())
@@ -16,8 +18,11 @@ const FeatureJob = () => {
             </div>
             <div className='grid grid-cols-2 gap-4 mt-4'>
                 {
-                    feature.map(job => <ShowFeatures job={job} key={job.id}></ShowFeatures> )
+                    feature.slice(0, dataLength).map(job => <ShowFeatures job={job} key={job.id}></ShowFeatures> )
                 }
+            </div>
+            <div className={dataLength === feature.length && 'hidden'}>
+            <button onClick={()=> setDataLength(feature.length)} className="btn">See-All Jobs..</button>
             </div>
         </div>
     );
